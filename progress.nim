@@ -21,17 +21,18 @@ type
     width: int
     total: int
     current: int
+    output: File
   InvalidPositionError* = object of Exception
 
 proc newProgressBar*(total: int = 100, step: int = 1, width: int = 100, complete: string = DEFAULT_COMPLETE_STR,
   incomplete: string = DEFAULT_INCOMPLETE_STR, incompleteHead: string = DEFAULT_COMPLETE_HEAD,
-  leftDelim: string = DEFAULT_LEFT_DELIM, rightDelim: string = DEFAULT_RIGHT_DELIM): ProgressBar =
+  leftDelim: string = DEFAULT_LEFT_DELIM, rightDelim: string = DEFAULT_RIGHT_DELIM, output: File = stdout): ProgressBar =
   ## Create a new progress bar with a given `total`, `step` and `width`.
   var head = incompleteHead
   if incompleteHead == nil:
     head = incomplete
   return ProgressBar(total: total, step: step, width: width, complete: complete, incomplete: incomplete,
-    incompleteHead: head, leftDelim: leftDelim, rightDelim: rightDelim, current: 0)
+    incompleteHead: head, leftDelim: leftDelim, rightDelim: rightDelim, current: 0, output: output)
 
 proc isComplete*(pb: ProgressBar): bool =
   ## Check whether the progress bar is complete.
@@ -63,11 +64,11 @@ proc print(pb: ProgressBar) {.raises: [IOError], tags: [WriteIOEffect].} =
   let incompleteBar = pb.incomplete.repeat(pb.width - position)
   let percentage = formatFloat(pb.percent(), ffDecimal, 2) & "%"
 
-  write(stdout, "\r" & pb.leftDelim & completeBar & incompleteBar & pb.rightDelim & " " & percentage)
-  flushFile(stdout)
+  write(pb.output, "\r" & pb.leftDelim & completeBar & incompleteBar & pb.rightDelim & " " & percentage)
+  flushFile(pb.output)
 
   if isComplete:
-    stdout.writeLine("")
+    pb.output.writeLine("")
 
 proc start*(pb: ProgressBar) {.raises: [IOError], tags: [WriteIOEffect].} =
   ## Start the progress bar. This will write the empty (0%) bar to the screen, which may not always be desired.

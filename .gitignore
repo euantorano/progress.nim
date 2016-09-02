@@ -1,2 +1,6 @@
-nimcache/
-tests/main
+nimcache
+.env
+tests/*
+!tests/*.nim
+!tests/nim.cfg
+.vscode

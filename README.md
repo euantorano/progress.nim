@@ -1,4 +1,4 @@
-# progress.nim
+# progress.nim ![Build Status](https://api.travis-ci.org/euantorano/progress.nim.svg)
 
 A simple progress bar for Nim.
 

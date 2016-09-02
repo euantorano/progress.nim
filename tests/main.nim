@@ -1,4 +1,4 @@
-import progress, unittest
+import progress, unittest, os
 
 suite "progress tests":
   test  "create simple progress bar and check completion":
