@@ -2,12 +2,12 @@ import progress, unittest, os
 
 suite "progress tests":
   test  "create simple progress bar and check completion":
-    let bar = newProgressBar()
+    var bar = newProgressBar()
     check bar.isComplete() == false
     check bar.isIncomplete() == true
 
   test "percentage calculation and set":
-    let bar = newProgressBar()
+    var bar = newProgressBar()
     bar.set(50)
     check bar.percent() == 50.0
 
@@ -18,7 +18,7 @@ suite "progress tests":
     check bar.percent() == 75.0
 
   test "increment":
-    let bar = newProgressBar()
+    var bar = newProgressBar()
 
     for i in 1..10:
       bar.increment()

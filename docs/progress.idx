@@ -1,0 +1,11 @@
+ProgressBar	progress.html#ProgressBar	progress : ProgressBar	
+InvalidPositionError	progress.html#InvalidPositionError	progress : InvalidPositionError	
+newProgressBar	progress.html#newProgressBar,int,int,int,char,char,char,char,char,File	progress : newProgressBar(total: int = 100; step: int = 1; width: int = - 1;\n               complete: char = DEFAULT_COMPLETE_CHAR;\n               incomplete: char = DEFAULT_INCOMPLETE_CHAR;\n               incompleteHead: char = DEFAULT_COMPLETE_HEAD;\n               leftDelim: char = DEFAULT_LEFT_DELIM;\n               rightDelim: char = DEFAULT_RIGHT_DELIM; output: File = stdout): ProgressBar	
+isComplete	progress.html#isComplete,ProgressBar	progress : isComplete(pb: ProgressBar): bool	
+isIncomplete	progress.html#isIncomplete,ProgressBar	progress : isIncomplete(pb: ProgressBar): bool	
+percent	progress.html#percent,ProgressBar	progress : percent(pb: ProgressBar): float	
+start	progress.html#start,ProgressBar	progress : start(pb: ProgressBar)	
+tick	progress.html#tick,ProgressBar,int	progress : tick(pb: var ProgressBar; count: int)	
+increment	progress.html#increment,ProgressBar	progress : increment(pb: var ProgressBar)	
+set	progress.html#set,ProgressBar,int	progress : set(pb: var ProgressBar; pos: int)	
+finish	progress.html#finish,ProgressBar	progress : finish(pb: var ProgressBar)	

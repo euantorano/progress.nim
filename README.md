@@ -4,6 +4,13 @@ A simple progress bar for Nim.
 
 ![Demo](https://raw.githubusercontent.com/euantorano/progress.nim/master/progress.gif)
 
+## Installation
+
+```
+nimble install progress
+```
+
+## [API Documentation](https://htmlpreview.github.io/?https://github.com/euantorano/progress.nim/blob/master/docs/progress.html)
 
 ## Usage
 
@@ -11,8 +18,7 @@ A simple progress bar for Nim.
 # os is only needed for `sleep`
 import progress, os
 
-let bar = newProgressBar()
-
+var bar = newProgressBar()
 bar.start()
 
 for i in 1..100:

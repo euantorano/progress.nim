@@ -1,9 +1,15 @@
-[Package]
-name          = "progress"
-version       = "0.1.0"
+# Package
+
+version       = "1.1.0"
 author        = "Euan T"
 description   = "A simple progress bar for Nim."
-license       = "BSD"
+license       = "BSD3"
 
-[Deps]
-Requires: "nim >= 0.13.0"
+srcDir = "src"
+
+# Dependencies
+
+requires "nim >= 0.13.0"
+
+task docs, "Build documentation":
+  exec "nim doc2 --index:on -o:docs/progress.html src/progress.nim"
