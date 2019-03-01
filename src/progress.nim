@@ -56,11 +56,11 @@ proc newProgressBar*(total: int = 100, step: int = 1, width: int = -1, complete:
 
 proc isComplete*(pb: ProgressBar): bool =
   ## Check whether the progress bar is complete.
-  result = pb.current == pb.width
+  result = pb.current == pb.total
 
 proc isIncomplete*(pb: ProgressBar): bool =
   ## Check whether the progress bar is incomplete.
-  result = pb.current != pb.width
+  result = pb.current != pb.total
 
 proc currentPosition(pb: ProgressBar): int =
   ## Get the progress bar's current position.
