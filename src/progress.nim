@@ -108,7 +108,7 @@ proc increment*(pb: var ProgressBar) {.raises: [IOError], tags: [WriteIOEffect].
   ## Increment the progress bar by one step.
   pb.tick(pb.step)
 
-proc set*(pb: var ProgressBar, pos: int) {.raises: [InvalidPositionError, IOError], tags: [WriteIOEffect].} =
+proc set*(pb: var ProgressBar, pos: int64) {.raises: [InvalidPositionError, IOError], tags: [WriteIOEffect].} =
   ## Set the progress bar's current position to `pos`.
   if pos < 0:
     raise newException(InvalidPositionError, "Position must be greater than 0")
