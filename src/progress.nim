@@ -18,15 +18,15 @@ type
     incompleteHead: char
     leftDelim: char
     rightDelim: char
-    step: int
+    step: int64
     width: int
     total: int64
-    current: int
+    current: int64
     output: File
   InvalidPositionError* = object of Exception
     ## Error raised if the position of a progress bar is changed to an invlaid value - either less than 0, or greater than the length of the bar.
 
-proc newProgressBar*(total: int = 100, step: int = 1, width: int = -1, complete: char = DEFAULT_COMPLETE_CHAR,
+proc newProgressBar*(total: int64 = 100, step: int = 1, width: int = -1, complete: char = DEFAULT_COMPLETE_CHAR,
   incomplete: char = DEFAULT_INCOMPLETE_CHAR, incompleteHead: char = DEFAULT_COMPLETE_HEAD,
   leftDelim: char = DEFAULT_LEFT_DELIM, rightDelim: char = DEFAULT_RIGHT_DELIM, output: File = stdout): ProgressBar =
   ## Create a new progress bar.
