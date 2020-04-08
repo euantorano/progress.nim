@@ -20,7 +20,7 @@ type
     rightDelim: char
     step: int
     width: int
-    total: int
+    total: int64
     current: int
     output: File
   InvalidPositionError* = object of Exception
