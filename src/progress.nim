@@ -18,15 +18,15 @@ type
     incompleteHead: char
     leftDelim: char
     rightDelim: char
-    step: int64
+    step: int
     width: int
-    total: int64
-    current: int64
+    total: int
+    current: int
     output: File
   InvalidPositionError* = object of Exception
     ## Error raised if the position of a progress bar is changed to an invlaid value - either less than 0, or greater than the length of the bar.
 
-proc newProgressBar*(total: int64 = 100, step: int = 1, width: int = -1, complete: char = DEFAULT_COMPLETE_CHAR,
+proc newProgressBar*(total: int = 100, step: int = 1, width: int = -1, complete: char = DEFAULT_COMPLETE_CHAR,
   incomplete: char = DEFAULT_INCOMPLETE_CHAR, incompleteHead: char = DEFAULT_COMPLETE_HEAD,
   leftDelim: char = DEFAULT_LEFT_DELIM, rightDelim: char = DEFAULT_RIGHT_DELIM, output: File = stdout): ProgressBar =
   ## Create a new progress bar.
@@ -78,7 +78,7 @@ proc print(pb: ProgressBar) {.raises: [IOError], tags: [WriteIOEffect].} =
 
   var completeBar = pb.complete.repeat(position)
   if not isComplete:
-    completeBar = completeBar[0..^1] & pb.incompleteHead
+    completeBar = completeBar[0 ..len(completeBar)] & pb.incompleteHead
 
   let
     incompleteBar = pb.incomplete.repeat(pb.width - position)
@@ -108,7 +108,7 @@ proc increment*(pb: var ProgressBar) {.raises: [IOError], tags: [WriteIOEffect].
   ## Increment the progress bar by one step.
   pb.tick(pb.step)
 
-proc set*(pb: var ProgressBar, pos: int64) {.raises: [InvalidPositionError, IOError], tags: [WriteIOEffect].} =
+proc set*(pb: var ProgressBar, pos: int) {.raises: [InvalidPositionError, IOError], tags: [WriteIOEffect].} =
   ## Set the progress bar's current position to `pos`.
   if pos < 0:
     raise newException(InvalidPositionError, "Position must be greater than 0")
