@@ -78,7 +78,7 @@ proc print(pb: ProgressBar) {.raises: [IOError], tags: [WriteIOEffect].} =
 
   var completeBar = pb.complete.repeat(position)
   if not isComplete:
-    completeBar = completeBar[0..^1] & pb.incompleteHead
+    completeBar = completeBar[0 ..len(completeBar)] & pb.incompleteHead
 
   let
     incompleteBar = pb.incomplete.repeat(pb.width - position)
