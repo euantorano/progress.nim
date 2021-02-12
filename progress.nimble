@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.1.2"
+version       = "1.1.3"
 author        = "Euan T"
 description   = "A simple progress bar for Nim."
 license       = "BSD3"
